@@ -18,9 +18,8 @@ module.exports = {
             {
                 test: /\.tsx?$/,
                 loader: 'awesome-typescript-loader',
-                options: {
-                    outDir: DIST_PATH,
-                    declaration: true
+                query: {
+                    configFileName: path.resolve(__dirname, 'tsconfig.json')
                 }
             }
         ]
