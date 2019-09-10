@@ -1,0 +1,48 @@
+{
+  "id": "dictionary",
+  "type": "object",
+  "additionalProperties": {
+    "anyOf": [
+      {
+        "$ref": "#/definitions/meta"
+      },
+      {
+        "$ref": "#/definitions/translation"
+      },
+      {
+        "$ref": "#"
+      }
+    ]
+  },
+  "definitions": {
+    "meta": {
+      "type": "object",
+      "required": ["meta", "parameters", "text"],
+      "properties": {
+        "meta": {
+          "const": true,
+          "description": "Sign determinates that given object is meta"
+        },
+        "text": {
+          "$ref": "#/definitions/translation"
+        },
+        "parameters": {
+          "description": "List of possible arguments. For now, properties can accept only 'string' constant as value",
+          "$ref": "#/definitions/arguments"
+        }
+      },
+      "additionalProperties": false
+    },
+    "arguments": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "const": "string"
+      }
+    },
+    "translation": {
+      "description": "Contains translation template of given string. Variables should be surrounded by braces {var}. Also supports plural forms, see https://github.com/formatjs/react-intl#example",
+      "type": "string"
+    }
+  }
+}

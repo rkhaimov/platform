@@ -1,3 +1,4 @@
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
 
 const SOURCE_PATH = path.resolve(__dirname, 'src');
@@ -10,7 +11,7 @@ module.exports = {
         filename: 'index.js'
     },
     resolve: {
-        extensions: ['.ts', '.js']
+        extensions: ['.tsx', '.ts', '.js']
     },
     module: {
         rules: [
@@ -23,5 +24,8 @@ module.exports = {
                 }
             }
         ]
-    }
+    },
+    plugins: [
+        new CleanWebpackPlugin()
+    ]
 };
