@@ -1,8 +1,8 @@
 import dictionary from './dictionary.json';
-import { createIntl } from '../src';
+import { createIntl } from '../../src';
 
 describe(`
-  Mapped types (type aliases in general) should infer all nessesary type information from json file
+  Mapped types (type aliases in general) infer all nessesary type information from json file
   provided to createIntl factory function
 `, () => {
   const [, Translate, translateIds] = createIntl(dictionary);

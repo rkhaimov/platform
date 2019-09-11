@@ -1,4 +1,4 @@
-interface IMeta {
+export interface IMeta {
   meta: boolean;
   text: string;
   parameters: {
