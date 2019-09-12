@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IDictionary } from './types';
+import { IDictionary } from '../types';
 
 export type ProviderComponentType = React.ComponentType<{}>;
 
