@@ -1,16 +1,18 @@
-import { createProvider, ProviderComponentType } from './createProvider';
-import { createTranslate, TranslateComponentType } from './createTranslate';
+import { createProvider} from './createProvider';
+import { ProviderComponentType } from './createProvider/types';
+import { createTranslate} from './createTranslate';
+import { TranslateComponentType } from './createTranslate/types';
 import { createTranslateIds } from './createTranslateIds';
 
-import { IDictionary, ToGetters } from './types';
+import { IDictionary, ToGetters } from './definitions/lang';
 
-export const createIntl = <TDictionary extends IDictionary>(dictionary: TDictionary): [
+export const createIntl = <TDictionary extends IDictionary>(lang: string, dictionary: TDictionary): [
   ProviderComponentType,
   TranslateComponentType<TDictionary>,
   ToGetters<TDictionary>,
 ] => {
   return [
-    createProvider(dictionary),
+    createProvider(lang, dictionary),
     createTranslate<TDictionary>(),
     createTranslateIds(dictionary),
   ];

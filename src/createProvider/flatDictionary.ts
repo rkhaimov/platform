@@ -1,5 +1,5 @@
 import { reduce, isString } from 'lodash';
-import { IDictionary } from '../types';
+import { IDictionary } from '../definitions/lang';
 import { concatParentWithCurrentKey, isMeta } from '../utils';
 
 interface IFlatDictionary { [key: string]: string; }

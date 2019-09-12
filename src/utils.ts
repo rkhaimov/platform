@@ -1,6 +1,6 @@
 import { isBoolean } from 'lodash';
 
-import { IMeta } from './types';
+import { IMeta } from './definitions/lang';
 
 export const concatParentWithCurrentKey = (key: string, parentKey: string) => {
   if (!parentKey) {

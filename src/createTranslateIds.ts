@@ -1,5 +1,5 @@
 import { reduce, set, isString } from 'lodash';
-import { ToGetters } from './types';
+import { ToGetters } from './definitions/lang';
 import { concatParentWithCurrentKey, isMeta } from './utils';
 
 export const createTranslateIds = <TDictionary extends {}>(dictionary: TDictionary, parentDictionaryKey = ''): ToGetters<TDictionary> => {
