@@ -5,7 +5,7 @@ describe(`
   Mapped types (type aliases in general) infer all nessesary type information from json file
   provided to createIntl factory function
 `, () => {
-  const [, Translate, translateIds] = createIntl(dictionary);
+  const [, Translate, translateIds] = createIntl('en', dictionary);
 
   it('should collect all parameters from meta information deeply from json', () => {
     Translate.defaultProps = {
