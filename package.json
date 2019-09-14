@@ -8,7 +8,7 @@
     "test": "jest",
     "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --watch --runInBand",
     "test:watch": "jest --watch",
-    "build": "webpack -p --config webpack.config.js"
+    "build": "npm run test && webpack -p --config webpack.config.js"
   },
   "keywords": [],
   "author": "",

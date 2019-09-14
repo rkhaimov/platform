@@ -8,7 +8,9 @@ module.exports = {
     entry: SOURCE_PATH,
     output: {
         path: DIST_PATH,
-        filename: 'index.js'
+        filename: 'index.js',
+        library: 'gnFePlatform',
+        libraryTarget: 'umd'
     },
     resolve: {
         extensions: ['.tsx', '.ts', '.js']

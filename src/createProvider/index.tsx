@@ -5,7 +5,7 @@ import { IDictionary } from '../definitions/lang';
 import { flatDictionary } from './flatDictionary';
 import { IWithLangProvidedProps, ProviderComponentType } from './types';
 
-const { Provider } = React.createContext<IWithLangProvidedProps>({} as IWithLangProvidedProps);
+export const { Provider, Consumer } = React.createContext<IWithLangProvidedProps>({} as IWithLangProvidedProps);
 
 export const createProvider = (lang: string, dictionary: IDictionary): ProviderComponentType => {
   const flatteredDictionary = flatDictionary(dictionary);
@@ -23,7 +23,9 @@ export const createProvider = (lang: string, dictionary: IDictionary): ProviderC
     render() {
       return (
         <Provider value={this.state}>
-          <IntlProvider locale={this.state.lang} messages={flatteredDictionary} />
+          <IntlProvider locale={this.state.lang} messages={flatteredDictionary}>
+            {this.props.children}
+          </IntlProvider>
         </Provider>
       );
     }
