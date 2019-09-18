@@ -8,7 +8,8 @@
     "test": "jest",
     "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --watch --runInBand",
     "test:watch": "jest --watch",
-    "build": "npm run test && webpack -p --config webpack.config.js"
+    "compile-cli": "tsc src/cli/sync-dictionary.ts --outDir ./",
+    "build": "npm run test && npm run compile-cli && webpack -p --config webpack.config.js"
   },
   "keywords": [],
   "author": "",
@@ -16,7 +17,8 @@
   "dependencies": {
     "lodash": "^4.17.15",
     "react": "^16.9.0",
-    "react-intl": "^3.2.1"
+    "react-intl": "^3.2.1",
+    "yargs": "^14.0.0"
   },
   "devDependencies": {
     "@types/jest": "^24.0.18",
@@ -32,5 +34,8 @@
     "webpack": "^4.36.1",
     "webpack-cli": "^3.3.6",
     "webpack-dev-server": "^3.7.2"
+  },
+  "bin": {
+    "sync-dictionary": "./sync-dictionary.js"
   }
 }
