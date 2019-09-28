@@ -1,0 +1,15 @@
+https://reactjs.org/docs/code-splitting.html#route-based-code-splitting
+https://webpack.js.org/loaders/bundle-loader/
+https://webpack.js.org/guides/code-splitting/
+https://www.npmjs.com/package/inline-chunk-manifest-html-webpack-plugin
+
+https://github.com/webpack/webpack/tree/master/examples/dll-user
+https://github.com/webpack/webpack/tree/master/examples/dll
+https://github.com/webpack/webpack/tree/master/test/configCases/dll-plugin
+
+
+1. Abstract platform from specific stream
+2. Provide lazy routing with streams
+3. Link stream with platform as environment
+4. Provide a way of communication between separated pages
+5. Optimize bundle by providing external dependencies

@@ -1,32 +1,34 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
 
-const SOURCE_PATH = path.resolve(__dirname, 'src');
 const DIST_PATH = path.resolve(__dirname, 'dist');
 
 module.exports = {
-    entry: SOURCE_PATH,
+    entry: path.resolve(__dirname, 'src'),
+    mode: "development",
+    devtool: "source-map",
     output: {
         path: DIST_PATH,
-        filename: 'index.js',
-        library: 'gnFePlatform',
-        libraryTarget: 'umd'
-    },
-    resolve: {
-        extensions: ['.tsx', '.ts', '.js']
+        filename: 'platform.[hash].js'
     },
     module: {
         rules: [
             {
                 test: /\.tsx?$/,
                 loader: 'awesome-typescript-loader',
-                query: {
-                    configFileName: path.resolve(__dirname, 'tsconfig.json')
+                options: {
+                    jsx: 'react',
+                    lib: ['esnext', 'dom']
                 }
             }
         ]
     },
+    resolve: {
+        extensions: ['.ts', '.tsx', '.js']
+    },
     plugins: [
-        new CleanWebpackPlugin()
+        new CleanWebpackPlugin(),
+        new HtmlWebpackPlugin()
     ]
 };
