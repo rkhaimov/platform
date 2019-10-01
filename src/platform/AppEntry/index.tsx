@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { IMenuItem } from '../definitions/general';
 import { matchLoadPage } from '../page-loader';
 import { IProps, IState } from './types';
 
@@ -12,7 +13,7 @@ export class AppEntry extends React.Component<IProps, IState> {
       .then(Content => this.setState({ Content }));
   }
 
-  renderMenuItem = menuItem => (
+  renderMenuItem = (menuItem: IMenuItem) => (
     <div onClick={() => this.matchMountPage(menuItem.path)}>{menuItem.title}</div>
   )
 

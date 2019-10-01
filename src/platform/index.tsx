@@ -2,7 +2,7 @@ import * as React from 'react';
 import { render } from 'react-dom';
 
 import { AppEntry } from './AppEntry';
-import { IMenuItem, IPageMeta } from './declarations';
+import { IMenuItem, IPageMeta } from './definitions/general';
 
 const MENU_ITEMS: IMenuItem[] = [
   {

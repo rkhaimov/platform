@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IMenuItem, IPageMeta } from '../declarations';
+import { IMenuItem, IPageMeta } from '../definitions/general';
 
 export interface IState {
   Content: React.ComponentType<{}>;

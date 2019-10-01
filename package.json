@@ -8,7 +8,7 @@
     "test": "jest",
     "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --watch --runInBand",
     "test:watch": "jest --watch",
-    "link-pages": "node build-utils/link-pages.js",
+    "link-pages": "node src/platform/link-pages/link-pages.js",
     "build": "platform/node_modules/.bin/webpack --config webpack.config.js && npm run link-pages",
     "inspect": "node --inspect-brk platform/node_modules/webpack/bin/webpack.js --config webpack.config.js"
   },
@@ -16,13 +16,17 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "lodash": "^4.17.15",
     "react": "^16.9.0",
-    "react-dom": "^16.10.1"
+    "react-dom": "^16.10.1",
+    "react-intl": "^3.3.2"
   },
   "devDependencies": {
     "@types/jest": "^24.0.18",
+    "@types/lodash": "^4.14.141",
     "@types/react": "^16.9.2",
     "@types/react-dom": "^16.9.1",
+    "@types/react-intl": "^3.0.0",
     "awesome-typescript-loader": "^5.2.1",
     "clean-webpack-plugin": "^3.0.0",
     "html-webpack-plugin": "^3.2.0",

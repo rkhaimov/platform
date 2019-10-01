@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IPageMeta } from './declarations';
+import { IPageMeta } from './definitions/general';
 
 export const matchLoadPage = (route: string, pages: IPageMeta[]): Promise<React.ComponentType<{}>> => {
   const pageToLoad = pages.find(page => route.includes(page.mountOn));

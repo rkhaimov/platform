@@ -1,4 +1,4 @@
 /.idea
-platform/node_modules
+node_modules
 dist
 sync-dictionary.js
