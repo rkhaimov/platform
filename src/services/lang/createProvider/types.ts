@@ -26,8 +26,4 @@ export interface IDictionarySource {
   uploadBaseDictionary(project: string, lang: string, dictionary: IDictionary): Promise<void>;
 }
 
-export interface IFileExplorer {
-  findDictionaryByPath(path: string): IDictionary;
-}
-
 export interface IFlatDictionary { [key: string]: string; }

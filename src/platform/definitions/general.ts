@@ -2,9 +2,9 @@ export interface IPageMeta {
   id: string;
   mountOn: string;
   actions: string[];
-  bundle: {
-    entry: string;
-    styles?: string;
+  manifest: {
+    'index.js': string;
+    'index.css': string;
   };
 }
 

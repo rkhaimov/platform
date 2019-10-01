@@ -15,15 +15,26 @@ const MENU_ITEMS: IMenuItem[] = [
   },
 ];
 
-const PAGES_META: IPageMeta[] = [
-  {
-    id: 'about',
-    mountOn: '/about',
-    actions: [],
-    bundle: {
-      entry: './pages/${route}/index.js',
-    },
-  },
-];
+class MetaLoader extends React.Component<{}, { loading: boolean; meta: IPageMeta[] }> {
+  state = {
+    loading: true,
+    meta: [],
+  };
 
-render(<AppEntry menuItems={MENU_ITEMS} pagesMeta={PAGES_META} />, document.body);
+  componentDidMount(): void {
+    fetch('meta.json')
+      .then(response => response.json())
+      .then(meta => this.setState({ meta: [].concat(meta) }))
+      .finally(() => this.setState({ loading: false }));
+  }
+
+  render() {
+    if (this.state.loading) {
+      return <h1>Loading</h1>;
+    }
+
+    return <AppEntry menuItems={MENU_ITEMS} pagesMeta={this.state.meta} />;
+  }
+}
+
+render(<MetaLoader />, document.body);

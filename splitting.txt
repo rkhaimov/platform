@@ -8,8 +8,13 @@ https://github.com/webpack/webpack/tree/master/examples/dll
 https://github.com/webpack/webpack/tree/master/test/configCases/dll-plugin
 
 
-1. Abstract platform from specific stream
+1. Abstract platform from specific stream (Done)
 2. Provide lazy routing with streams
-3. Link stream with platform as environment
+3. Link stream with platform as environment (Done)
 4. Provide a way of communication between separated pages
-5. Optimize bundle by providing external dependencies
+5. Optimize bundle by providing external dependencies (Done via dll)
+
+Improvements
+    1. Use style-loader in dev and css-extract in prod
+    2. Use hash only in prod
+    3. Filter assets from manifest
