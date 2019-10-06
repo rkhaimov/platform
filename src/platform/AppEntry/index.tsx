@@ -2,10 +2,14 @@ import * as React from 'react';
 import { IMenuItem } from '../definitions/general';
 import { matchLoadPage } from '../page-loader';
 import { IProps, IState } from './types';
+// @ts-ignore
+import img from './image.jpg';
+// @ts-ignore
+import './style.scss';
 
 export class AppEntry extends React.Component<IProps, IState> {
   state: IState = {
-    Content: () => <h1>Default content</h1>,
+    Content: () => <h1>Defaults content</h1>,
   };
 
   matchMountPage = (path: string) => {
@@ -28,7 +32,8 @@ export class AppEntry extends React.Component<IProps, IState> {
         <div>
           <Content />
         </div>
-        <footer>
+        <footer className="hello-world">
+          <img src={img} alt="" />
           Footer
         </footer>
       </div>

@@ -4,9 +4,11 @@ const pageRoot = process.cwd();
 const platformDist = path.resolve(__dirname, '..', 'dist');
 
 module.exports = {
-    common: {
+    platform: {
         metaFileName: 'meta.json',
         dist: platformDist,
+        entry: path.resolve(__dirname, '..', 'src', 'platform'),
+        tsconfig: path.resolve(__dirname, '..', 'tsconfig.json')
     },
     page: {
         root: pageRoot,

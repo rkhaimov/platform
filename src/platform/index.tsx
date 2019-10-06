@@ -37,4 +37,10 @@ class MetaLoader extends React.Component<{}, { loading: boolean; meta: IPageMeta
   }
 }
 
-render(<MetaLoader />, document.body);
+const div = document.createElement('div');
+
+div.setAttribute('id', 'root');
+
+document.body.appendChild(div);
+
+render(<MetaLoader />, document.querySelector('#root'));

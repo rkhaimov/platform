@@ -1,49 +1,16 @@
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
-const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
-const path = require('path');
+const { platform } = require('../constants');
+const createConfigFrom = require('./webpack.platform.common.config');
 
-const DIST_PATH = path.resolve(__dirname, 'dist');
-
-module.exports = {
-    entry: path.resolve(__dirname, 'src', 'platform'),
+const config = {
     mode: 'development',
-    devtool: 'source-map',
+    devtool: 'cheap-source-map',
+    devServer: {
+        contentBase: platform.dist
+    },
     output: {
-        path: DIST_PATH,
-        filename: 'platform.[hash].js'
+        filename: 'platform.js',
     },
-    module: {
-        rules: [
-            {
-                test: /\.tsx?$/,
-                loader: 'awesome-typescript-loader',
-                query: {
-                    configFileName: path.resolve(__dirname, 'tsconfig.json')
-                }
-            }
-        ]
-    },
-    resolve: {
-        extensions: ['.ts', '.tsx', '.js']
-    },
-    plugins: [
-        new webpack.DllReferencePlugin({
-            context: __dirname,
-            manifest: require('dist/vendors/manifest')
-        }),
-        new CleanWebpackPlugin({
-            cleanOnceBeforeBuildPatterns: ['platform.*.js', 'platform.*.js.map', 'index.html']
-        }),
-        new HtmlWebpackPlugin(),
-        new AddAssetHtmlPlugin(
-            {
-                filepath: path.resolve(__dirname, 'dist', 'vendors', 'vendors.*.js'),
-                includeSourcemap: false,
-                publicPath: './vendors',
-                outputPath: 'vendors'
-            }
-        )
-    ]
+    styleLoader: require.resolve('style-loader'),
 };
+
+module.exports = createConfigFrom(config);

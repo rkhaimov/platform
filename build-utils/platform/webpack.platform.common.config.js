@@ -1,32 +1,27 @@
 const webpack = require('webpack');
-const ManifestPlugin = require('webpack-manifest-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const { pick } = require(require.resolve('lodash'));
-const { page, dll, platform } = require('../constants');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
+const path = require('path');
+const { platform, dll } = require('../constants');
 
 const createConfigFrom = (config) => {
-    const meta = require(page.meta);
-
     return {
-        entry: {
-            [page.bundle.jsName]: page.entry
-        },
+        entry: platform.entry,
         mode: config.mode,
         devtool: config.devtool,
         devServer: config.devServer,
         output: {
-            path: page.production.getOutputPath(meta),
-            library: '__jsonpLoader__',
-            libraryTarget: 'jsonp',
-            ...config.output,
+            path: platform.dist,
+            ...config.output
         },
         module: {
             rules: [
                 {
                     test: /\.tsx?$/,
-                    loader: require.resolve('awesome-typescript-loader'),
+                    loader: 'awesome-typescript-loader',
                     query: {
-                        configFileName: page.tsconfig
+                        configFileName: platform.tsconfig
                     }
                 },
                 {
@@ -42,7 +37,6 @@ const createConfigFrom = (config) => {
                     loader: require.resolve('file-loader'),
                     options: {
                         name: 'assets/[name].[hash:8].[ext]',
-                        ...config.fileLoaderOptions,
                     },
                 }
             ]
@@ -51,20 +45,28 @@ const createConfigFrom = (config) => {
             extensions: ['.ts', '.tsx', '.js']
         },
         plugins: [
-            new CleanWebpackPlugin(),
             new webpack.DllReferencePlugin(dll.vendors),
-            new ManifestPlugin({
-                ...config.manifestOptions,
-                fileName: platform.metaFileName,
-                serialize: (manifest) => {
-                    const withJsCssOnly = pick(manifest, [page.bundle.jsFullName, page.bundle.cssFullName]);
-
-                    return JSON.stringify({ ...meta, manifest: withJsCssOnly })
-                }
+            new CleanWebpackPlugin({
+                cleanOnceBeforeBuildPatterns: [
+                    'assets/**/*',
+                    'platform.*.css',
+                    'platform.*.js',
+                    'platform.*.js.map',
+                    'index.html',
+                ]
             }),
-            ...(config.plugins || []),
+            new HtmlWebpackPlugin(),
+            new AddAssetHtmlPlugin(
+                {
+                    filepath: path.resolve(platform.dist, 'vendors', 'vendors.*.js'),
+                    includeSourcemap: false,
+                    publicPath: './vendors',
+                    outputPath: 'vendors'
+                }
+            ),
+            ...(config.plugins || [])
         ]
-    }
-};
+    };
+}
 
 module.exports = createConfigFrom;

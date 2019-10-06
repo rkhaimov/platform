@@ -5,7 +5,7 @@ const createConfigFrom = require('./webpack.page.common.config');
 const meta = require(page.meta);
 const publicPath = page.production.getPublicPath(meta);
 
-const partialConfig = {
+const config = {
     mode: 'production',
     output: {
         filename: `${page.bundle.jsName}.[hash].js`,
@@ -20,4 +20,4 @@ const partialConfig = {
     ],
 };
 
-module.exports = createConfigFrom(partialConfig);
+module.exports = createConfigFrom(config);

@@ -1,4 +1,4 @@
-const { page, common } = require('../constants');
+const { page, platform } = require('../constants');
 const createConfigFrom = require('./webpack.page.common.config');
 
 const builder = {
@@ -9,7 +9,7 @@ const builder = {
     },
     styleLoader: require.resolve('style-loader'),
     devServer: {
-        contentBase: common.dist
+        contentBase: platform.dist
     }
 };
 
