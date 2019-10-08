@@ -1,5 +1,6 @@
 interface IPageExport {
   routes: React.ComponentType<{}>;
+  handleAction(action: string, payload: unknown, history: unknown): unknown;
 }
 
 // tslint:disable-next-line:interface-name

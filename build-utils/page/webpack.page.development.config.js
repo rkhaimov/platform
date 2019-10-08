@@ -3,7 +3,7 @@ const createConfigFrom = require('./webpack.page.common.config');
 
 const builder = {
     mode: 'development',
-    devtool: 'cheap-source-map',
+    devtool: 'source-map',
     output: {
         filename: page.bundle.jsFullName
     },

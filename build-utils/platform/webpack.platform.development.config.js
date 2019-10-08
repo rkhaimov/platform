@@ -3,7 +3,7 @@ const createConfigFrom = require('./webpack.platform.common.config');
 
 const config = {
     mode: 'development',
-    devtool: 'cheap-source-map',
+    devtool: 'source-map',
     devServer: {
         contentBase: platform.dist
     },
